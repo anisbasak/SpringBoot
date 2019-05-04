@@ -1,0 +1,40 @@
+package com.anis.springbootstarter.topic;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+@Service
+public class TopicService {
+	
+	@Autowired
+	private TopicRepository topicRepository;
+	
+	public List<Course> getAllTopics() {
+		List<Course> topics = new ArrayList<Course>();
+		topicRepository.findAll().forEach(topics::add);
+		return topics;
+	}
+	
+	public Course getTopic(String id) {
+		return topicRepository.findById(id).get();
+	}
+
+	public void addService(Course topic) {
+		// TODO Auto-generated method stub
+		topicRepository.save(topic);
+	}
+
+	public void updateTopic(String id, Course topic) {
+		// TODO Auto-generated method stub
+		topicRepository.save(topic);
+	}
+
+	public void deleteTopic(String id) {
+		// TODO Auto-generated method stub
+		topicRepository.deleteById(id);
+	}
+}
